@@ -5,7 +5,7 @@ import listCountry from "./templates/country-list.hbs";
 import { error } from "@pnotify/core";
 import "@pnotify/core/dist/PNotify.css";
 import "@pnotify/core/dist/BrightTheme.css";
-var debounce = require("lodash.debounce");
+import debounce from "lodash.debounce";
 
 const markupEl = document.querySelector(".country-container");
 const searchCountry = document.querySelector("input");
@@ -45,13 +45,13 @@ function renderCountry(country) {
   if (country.length > 10) {
     error({
       title: "Ошибка",
-      text: "Введите большее количество символов",
+      text: "Введите больше символов",
       icon: true,
       delay: 3000,
     });
     markupEl.innerHTML = "";
   }
-  if (country.length > 2 && country.length < 10) {
+  if (country.length >= 2 && country.length <= 10) {
     markupEl.innerHTML = listCountry(country);
   }
   if (country.length === 1) {
